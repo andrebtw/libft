@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre <andre@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 21:07:10 by andre             #+#    #+#             */
-/*   Updated: 2022/10/24 21:09:35 by andre            ###   ########.fr       */
+/*   Created: 2022/10/31 20:34:17 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/10/31 20:34:17 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-size_t strlen(const char *s)
+size_t ft_strlen(const char *s)
 {
 	size_t	index;
 

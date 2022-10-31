@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre <andre@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 19:52:50 by andre             #+#    #+#             */
-/*   Updated: 2022/10/23 21:49:15 by andre            ###   ########.fr       */
+/*   Created: 2022/10/31 10:22:56 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/10/31 10:22:56 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void *ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
+void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
 	size_t	i;
 	char	*string_dest;
-	char	*string_src;
+	const char	*string_src;
 
-	string_src = (char *)src;
+	string_src = src;
+	string_dest = dest;
 	i = 0;
 	while (i < n)
 	{
@@ -26,14 +27,4 @@ void *ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 		i++;
 	}
 	return (dest);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	char dest[20] = "hello";
-	char src[20] = "world";
-	ft_memcpy(dest, src, 4);
-	printf("%s", dest);
-	return (0);
 }

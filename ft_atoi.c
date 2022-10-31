@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andre <andre@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 13:08:34 by andre             #+#    #+#             */
-/*   Updated: 2022/10/08 19:57:56 by andre            ###   ########.fr       */
+/*   Created: 2022/10/31 10:37:31 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/10/31 10:37:31 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	ft_isspace(char character)
 {
 	if (character == ' ' || character == '\t' || character == '\n'
 		|| character == '\v' || character == '\f' || character == '\r')
-		return (1);
+		return (1024);
 	return (0);
 }
 
