@@ -33,15 +33,28 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 	char	*string_dest;
-	char	*string_src;
+	char	char_src;
+	const char	*string_src;
 
-	ft_memcpy(string_src, src, n);
 	string_dest = dest;
+	string_src = src;
 	i = 0;
 	while (i < n)
 	{
-		string_dest[i] = string_src[i];
+		char_src = string_src[i];
+		string_dest[i] = char_src;
 		i++;
 	}
 	return (dest);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	char str[100] = "Learningisfun";
+	char *dest;
+
+	ft_memmove(str + 8, str, 10);
+	printf("%s", str);
+	return (0);
 }
