@@ -6,16 +6,16 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 20:32:59 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/10/31 20:32:59 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:08:17 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
-	char *string;
+	char	*string;
 
 	string = (char *)s;
 	i = 0;

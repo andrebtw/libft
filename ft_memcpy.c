@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:22:56 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/10/31 10:22:56 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:04:56 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
-	size_t	i;
-	char	*string_dest;
+	size_t		i;
+	char		*string_dest;
 	const char	*string_src;
 
 	string_src = src;

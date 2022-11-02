@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:33:38 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/02 15:33:38 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:12:09 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,4 @@ char	*ft_strcpy(char *restrict dest, const char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	char src[20] = "Hello World";
-	char dest[20];
-	ft_strcpy(dest, src);
-	printf("%s\n", dest);
-	return (0);
 }

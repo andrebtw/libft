@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:48:36 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/01 12:48:36 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:04:14 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	size_t				i;
 	const unsigned char	*string1;
 	const unsigned char	*string2;
 

@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:22:31 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/01 15:22:31 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:06:32 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*ft_strdup(const char *s)
 {
-	char	*return_string;
+	char			*return_string;
 	unsigned int	i;
 	unsigned int	string_size;
 
