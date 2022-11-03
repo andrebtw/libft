@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 12:08:01 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/03 23:40:47 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/11/03 23:51:56 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/03 23:51:56 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
+int ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while (haystack[i] != '\0' && n > 0)
-	{
-		while (haystack[i] == needle[j])
-		{
-			i++;
-			j++;
-		}
-		if (needle[j] == '\0')
-			return ((char *)haystack + (i - j));
+	while (s1[i] != '\0' && s1[i] == s2[i])
 		i++;
-		n--;
-	}
-	return (NULL);
+	return (s1[i] - s2[i]);
 }
