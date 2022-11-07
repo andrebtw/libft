@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:35:35 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/07 20:05:19 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/11/07 21:23:43 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/07 21:27:59 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-static size_t   	size_count(char *dst, const char *src, size_t size)
+static size_t	size_count(char *dst, const char *src, size_t size)
 {
     int    i;
     int    j;
@@ -32,7 +32,7 @@ static size_t   	size_count(char *dst, const char *src, size_t size)
     return (i + j);
 }
 
-size_t    ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
     unsigned int	src_size;
     unsigned int	dest_size;

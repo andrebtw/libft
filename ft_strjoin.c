@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:59:04 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/07 16:26:57 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:05:04 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static	int	ft_strlen_int(const char *s)
 {
 	int	index;
 
+	index = 0;
 	while (s[index] != '\0')
 		index++;
 	return (index);
