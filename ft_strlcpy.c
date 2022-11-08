@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:23:43 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/07 21:27:59 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:05:33 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 static size_t	size_count(char *dst, const char *src, size_t size)
 {
-    int    i;
-    int    j;
+    int    dst_size;
+    int    src_size;
 
-    i = 0;
-    j = 0;
-    while (dst[i] != '\0')
-        i++;
-    while (src[j] != '\0')
-        j++;
-    if (i + j > (int)size)
-    {
-        if (i > j)
-            return (j + size);
-        return (i + size);
-    }
-    return (i + j);
+    dst_size = 0;
+    src_size = 0;
+    while (dst[dst_size] != '\0')
+        dst_size++;
+    while (src[src_size] != '\0')
+        src_size++;
+    if (size == 0)
+        return (src_size);
+    if (dst_size > (int)size)
+        return ((int)size + src_size);
+    else
+        return (dst_size + src_size);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)

@@ -6,13 +6,13 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 20:34:25 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/10/31 20:34:25 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:27:04 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
-	if (c < 'a' && c > 'z')
-		return (c);
-	return (c - 32);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

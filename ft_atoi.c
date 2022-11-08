@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:37:31 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/02 18:11:38 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:57:17 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ static int	ft_isspace(char character)
 {
 	if (character == ' ' || character == '\t' || character == '\n'
 		|| character == '\v' || character == '\f' || character == '\r')
-		return (1024);
+		return (1);
 	return (0);
 }
 
