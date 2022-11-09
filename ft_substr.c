@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 10:20:19 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/09 10:33:51 by anrodri2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string.h>
+#include <stdlib.h>
+
+static int	ft_strlen_int(const char *s)
+{
+    int	index;
+
+	index = 0;
+    while (s[index] != '\0')
+        index++;
+    return (index);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+    unsigned int    i;
+    size_t            len_count;
+    char            *r_string;
+
+    i = start;
+    len_count = 0;
+    r_string = (char *) malloc ((ft_strlen_int(s)
+                + (int)len - start) * sizeof(char) + 1);
+    if (r_string == NULL)
+        return (NULL);
+    while (s[i] != '\0' && len_count < len)
+    {
+        r_string[len_count] = s[i];
+        len_count++;
+        i++;
+    }
+    if (r_string[len_count] != '\0')
+        r_string[len_count] = '\0';
+    return (r_string);
+}
