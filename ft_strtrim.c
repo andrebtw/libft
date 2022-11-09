@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:35:19 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/09 12:29:39 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:34:30 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	ft_skip_end(char const *s1, char const *set, int count)
 		return (count + i);
 	return (count);
 }
-#include <stdio.h>
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int	i;
@@ -86,22 +86,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	k = 0;
 	while (s1[i] != '\0')
 	{
-		k = ft_skip_end(s1, set, k);
 		if (i == 0)
 			i = ft_skip_begin(s1, set);
+		i = ft_skip_end(s1, set, i);
 		r_string[k] = s1[i];
 		k++;
 		i++;
 	}
 	r_string[k] = '\0';
 	return (r_string);
-}
-
-
-#include <stdio.h>
-int	main(void)
-{
-	char *test = ft_strtrim("z42 networkzbzzzzzzzzzzzzzzzzzzzz", "z");
-	printf("%s", test);
-	return (0);
 }

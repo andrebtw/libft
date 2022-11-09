@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 00:09:46 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/09 18:14:23 by anrodri2         ###   ########lyon.fr   */
+/*   Created: 2022/11/09 18:28:54 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/09 18:32:46 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+static void	ft_putnbr2(int n, int fd)
 {
-	int	i;
+	int	remainder;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
+	if (n == -2147483648)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i--;
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	return (NULL);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n == 0)
+		return ;
+	ft_putnbr2(n / 10, fd);
+	remainder = (n % 10) + '0';
+	write(fd, &remainder, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == 0)
+	{
+		n = n + '0';
+		write(fd, &n, 1);
+	}
+	else
+		ft_putnbr2(n, fd);
 }

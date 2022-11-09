@@ -6,11 +6,11 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:51:56 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/07 20:57:03 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:03:08 by anrodri2         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 

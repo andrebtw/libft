@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 00:09:46 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/09 18:14:23 by anrodri2         ###   ########lyon.fr   */
+/*   Created: 2022/11/09 18:18:09 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/09 18:20:42 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
+	char	character;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
-	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i--;
-	}
-	return (NULL);
+	character = c;
+	write(fd, &character, 1);
 }
