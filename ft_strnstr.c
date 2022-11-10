@@ -6,11 +6,18 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:08:01 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/09 18:50:25 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:27:12 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+
+static long long	ft_size(size_t size)
+{
+	if ((long long)size < 0)
+		return ((long long)__LONG_LONG_MAX__);
+	return ((long long)size);
+}
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
@@ -18,15 +25,18 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (n > 0 && haystack[i] != '\0')
+	n = ft_size(n) + 1;
+	if (n - 1 == 0)
+		return (NULL);
+	while (--n > 0 && haystack[i] != '\0')
 	{
-		while (haystack[i] == needle[j] && needle[j] != '\0')
+		j = 0;
+		while ((haystack[i] == needle[j] && needle[j] != '\0'))
 		{
 			i++;
 			j++;
 		}
-		if (needle[j] == '\0' && (int)n - (int)j >= 0)
+		if (needle[j] == '\0' && (long long)n - (long long)j >= 0)
 			return ((char *)haystack + (i - j));
 		else
 		{
@@ -34,7 +44,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 			j = 0;
 		}
 		i++;
-		n--;
 	}
 	return (NULL);
 }
