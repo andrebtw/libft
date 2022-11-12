@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:35:19 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/10 18:02:12 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:54:26 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	r_string[k] = '\0';
 	return (r_string);
 }
-/*
+
 #include <stdio.h>
 int	main(void)
 {
-	printf("%s", ft_strtrim("lorem ipsum dolor sit amet", "te"));
+	printf("%s", ft_strtrim("teeeeeeeeeeeetttttlorem ipsum dolor sit amet", "te"));
 	return (0);
-}*/
+}
