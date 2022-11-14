@@ -6,12 +6,13 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:35:19 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/12 16:54:26 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:20:18 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
 static int	ft_strlen_int(const char *s)
 {
@@ -21,6 +22,14 @@ static int	ft_strlen_int(const char *s)
 	while (s[index] != '\0')
 		index++;
 	return (index);
+}
+
+static char	*ft_r_string(const char *s)
+{
+	char	*r_string;
+
+	r_string = ft_strdup(s);
+	return (r_string);
 }
 
 static int	ft_skip_begin(char const *s1, char const *set)
@@ -91,15 +100,17 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i = ft_skip_end(s1, set, i);
 		r_string[k] = s1[i];
 		k++;
+		if (s1[i] == '\0')
+			return (ft_r_string(r_string));
 		i++;
 	}
 	r_string[k] = '\0';
-	return (r_string);
+	return (ft_r_string(r_string));
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
-	printf("%s", ft_strtrim("teeeeeeeeeeeetttttlorem ipsum dolor sit amet", "te"));
+	printf("%s", ft_strtrim("lorem ipsum dolor sit amet", "te"));
 	return (0);
-}
+}*/
