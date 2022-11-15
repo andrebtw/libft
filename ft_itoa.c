@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:11:55 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/12 15:58:16 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:23:00 by anrodri2         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,11 @@ static char	*ft_is_zero(void)
 	return (r_string);
 }
 
-char	*ft_itoa(int n)
+static char	*ft_itoa_main(int n, char *r_string, long n_long, int nb_len)
 {
-	char	*r_string;
-	int		nb_len;
-	int		is_neg;
-	long	n_long;
+	int	is_neg;
 
-	n_long = (long)n;
-	nb_len = int_size(n_long);
 	is_neg = 0;
-	if (n == 0)
-		return (ft_is_zero());
-	r_string = (char *) malloc (nb_len * sizeof(char) + 1);
-	if (r_string == NULL)
-		return (NULL);
 	if ((long)n < 0)
 	{
 		n_long = -1 * n_long;
@@ -74,10 +64,27 @@ char	*ft_itoa(int n)
 		r_string[0] = '-';
 	return (r_string);
 }
+
+char	*ft_itoa(int n)
+{
+	char	*r_string;
+	int		nb_len;
+	long	n_long;
+
+	n_long = (long)n;
+	nb_len = int_size(n_long);
+	if (n == 0)
+		return (ft_is_zero());
+	r_string = (char *) malloc (nb_len * sizeof(char) + 1);
+	if (!r_string)
+		return (NULL);
+	r_string = ft_itoa_main(n, r_string, n_long, nb_len);
+	return (r_string);
+}
 /*
 int	main(void)
 {
-	char *str = ft_itoa(-4894849489894);
+	char *str = ft_itoa(-489484994);
 	printf("%s", str);
 	return (0);
 }
