@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:21:06 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/15 15:35:23 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:53:23 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,14 @@ static void	ft_free_all(char **string, int i)
 	free(string);
 }
 
-static int	ft_isempty(char *string)
-{
-	if (string[0] != 0)
-		return (1);
-	return (0);
-}
-
 static char	**ft_malloced(char const *s)
 {
 	char	**r_string;
 	int		i;
 
 	i = 0;
-	r_string = (char **) malloc ((ft_strlen(s) * ft_strlen(s) + 1) * sizeof(char **));
+	r_string = (char **) malloc (
+			(ft_strlen(s) * ft_strlen(s) + 1) * sizeof(char **));
 	if (!r_string)
 		return (NULL);
 	while ((size_t)i <= ft_strlen(s) + 1)
@@ -54,33 +48,34 @@ static char	**ft_malloced(char const *s)
 	return (r_string);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_check_end(char **r_string, int k, int j)
 {
-	char	**r_string;
-	int		i;
+	r_string[k][j] = '\0';
+	if (r_string[k][0])
+		k++;
+	r_string[k] = NULL;
+	return (r_string);
+}
+
+char	**ft_split_main(char const *s, char c, char **r_string, int i)
+{
 	int		j;
 	int		k;
 
-	r_string = ft_malloced(s);
-	if (!r_string)
-		return (NULL);
-	i = 0;
 	j = 0;
 	k = 0;
 	while (s[i] != '\0')
 	{
-		if  (s[i] == c && s[i + 1] == c)
-			i++;
-		else
+		if (!(s[i] == c && s[i + 1] == c))
 		{
 			r_string[k][j] = s[i];
-			i++;
 			j++;
 		}
+		i++;
 		if (s[i] == c && s[i + 1] != c)
 		{
 			i++;
-			if (ft_isempty(r_string[0]) != 0)
+			if (r_string[0][0] != 0)
 			{
 				r_string[k][j] = '\0';
 				k++;
@@ -88,23 +83,18 @@ char	**ft_split(char const *s, char c)
 			j = 0;
 		}
 	}
-	r_string[k][j] = '\0';
-	if (r_string[k][0])
-		k++;
-	r_string[k] = NULL;
+	return (ft_check_end(r_string, k, j));
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**r_string;
+	int		i;
+
+	r_string = ft_malloced(s);
+	if (!r_string)
+		return (NULL);
+	i = 0;
+	r_string = ft_split_main(s, c, r_string, i);
 	return (r_string);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	**splitted = ft_split("test ", ' ');
-	int i = 0;
-	while (splitted[i] != NULL)
-	{
-		printf("[%s]", splitted[i]);
-		i++;
-	}
-	printf("%s", splitted[i]);
-	return (0);
-}*/
