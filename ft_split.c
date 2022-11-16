@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:21:06 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:23 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:36:32 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,87 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static void	ft_free_all(char **string, int i)
+int	ft_malloc_size_tab(char const *s, char c)
 {
-	while (i >= 0)
-	{
-		free(string[i]);
-		i--;
-	}
-	free(string);
-}
-
-static char	**ft_malloced(char const *s)
-{
-	char	**r_string;
 	int		i;
+	int		malloc_size;
 
 	i = 0;
-	r_string = (char **) malloc (
-			(ft_strlen(s) * ft_strlen(s) + 2) * sizeof(char **));
-	if (!r_string)
-		return (NULL);
-	while ((size_t)i <= ft_strlen(s) + 1)
+	malloc_size = 1;
+	while (s[i])
 	{
-		r_string[i] = (char *) malloc ((ft_strlen(s) + 1));
-		if (!r_string[i])
+		if (s[i] && (!i && s[0] == c))
+			while (s[i] && s[i] == c)
+				i++;
+		if (s[i] && s[i] == c)
 		{
-			ft_free_all(r_string, i);
-			return (NULL);
+			while (s[i] && s[i] == c)
+				i++;
+			malloc_size++;
 		}
 		i++;
 	}
-	ft_bzero(r_string[0], 1);
-	return (r_string);
+	return (malloc_size);
 }
 
-char	**ft_check_end(char **r_string, int k, int j)
+int	ft_skip_begin(char const *s, char c, int i)
 {
-	r_string[k][j] = '\0';
-	if (r_string[k][0])
-		k++;
-	r_string[k] = NULL;
-	return (r_string);
-}
-
-char	**ft_split_main(char const *s, char c, char **r_string, int i)
-{
-	int		j;
-	int		k;
-
-	j = 0;
-	k = 0;
-	while (s[i] != '\0')
+	if (s[i] && i == 0)
 	{
-		if (!(s[i] == c && s[i + 1] == c))
-		{
-			r_string[k][j] = s[i];
-			j++;
-		}
+		if (s[i] == c)
+			while (s[i] && s[i] == c)
+				i++;
+	}
+	return (i);
+}
+
+int	ft_add_i(char const *s, char c, int i)
+{
+	while (s[i] && s[i] != c)
 		i++;
-		if (s[i] == c && s[i + 1] != c)
-		{
+	if (s[i] && !i)
+	{
+		while (s[i] && s[i] == c)
 			i++;
-			if (r_string[0][0] != 0)
-			{
-				r_string[k][j] = '\0';
-				k++;
-			}
-			j = 0;
-		}
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	return (ft_check_end(r_string, k, j));
+	return (i);
+}
+
+char	*ft_malloc_string(char const *s, char c, int n)
+{
+	char	*r_string;
+	int		i;
+	int		r_string_index;
+
+	i = 0;
+	r_string_index = 0;
+	if (s[0] == c)
+		n++;
+	while (s[i] && n != 0)
+	{
+		if (s[i] == c)
+		{
+			while (s[i] == c && s[i])
+				i++;
+			n--;
+		}
+		i++;
+	}
+	if (i)
+		i--;
+	n = ft_skip_begin(s, c, i);
+	i = ft_add_i(s, c, i);
+	r_string = (char *) malloc (i - n + 1);
+	while (i > n)
+	{
+		r_string[r_string_index] = s[n];
+		n++;
+		r_string_index++;
+	}
+	r_string[r_string_index] = '\0';
+	return (r_string);
 }
 
 char	**ft_split(char const *s, char c)
@@ -91,10 +102,44 @@ char	**ft_split(char const *s, char c)
 	char	**r_string;
 	int		i;
 
-	r_string = ft_malloced(s);
+	r_string = (char **) malloc ((ft_malloc_size_tab(s, c) + 1) * sizeof(char **));
 	if (!r_string)
 		return (NULL);
 	i = 0;
-	r_string = ft_split_main(s, c, r_string, i);
+	while (i < ft_malloc_size_tab(s, c))
+	{
+		r_string[i] = ft_malloc_string(s, c, i);
+		if (!r_string)
+		{
+			while (i >= 0)
+			{
+				free(r_string[i]);
+				i--;
+			}
+			free(r_string);
+			return (NULL);
+		}
+		if (r_string[i][0] == '\0')
+		{
+			r_string[i] = NULL;
+			return (r_string);
+		}
+		i++;
+	}
+	r_string[i] = NULL;
 	return (r_string);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	char **test = ft_split("HelloWorld ", ' ');
+	int i = 0;
+	while (test[i] != NULL)
+	{
+		printf("%s\n", test[i]);
+		i++;
+	}
+	printf("%s\n", test[i]);
+	return (0);
 }
