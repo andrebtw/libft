@@ -132,7 +132,7 @@ char	**ft_split(char const *s, char c)
 	r_string[i] = NULL;
 	return (r_string);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -151,3 +151,4 @@ int	main(void)
 	free(test);
 	return (0);
 }
+*/
