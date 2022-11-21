@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 03:23:48 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/18 03:23:53 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:33:22 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 #include <stdlib.h>
 #include "libft.h"
 
-//"HelloWorld "
 int	ft_malloc_size_tab(char const *s, char c)
 {
 	int		i;
 	int		malloc_size;
-	int		found_char;
 
+	if (!s || !s[0])
+		return (0);
 	i = 0;
 	malloc_size = 1;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		found_char = 0;
 		if (s[i] && (!i && s[0] == c))
 			while (s[i] && s[i] == c)
 				i++;
-		if (!s[i])
-			return (malloc_size + 1);
 		if (s[i] && s[i] == c)
 		{
 			while (s[i] && s[i] == c)
 				i++;
 			malloc_size++;
-			found_char = 1;
 		}
-		if (!found_char)
+		else if (s[i])
 			i++;
 	}
 	if (s[i - 1] == c)
@@ -56,6 +52,7 @@ int	ft_skip_begin(char const *s, char c, int i)
 	}
 	return (i);
 }
+
 int	ft_add_i(char const *s, char c, int i)
 {
 	while (s[i] && s[i] != c)
@@ -88,29 +85,28 @@ char	*ft_malloc_string(char const *s, char c, int n)
 				i++;
 			n--;
 		}
-		i++;
+		if (s[i])
+			i++;
 	}
 	if (i)
 		i--;
-	n = ft_skip_begin(s, c, i);
+	n = ft_skip_begin(s, c, i) - 1;
 	i = ft_add_i(s, c, i);
 	r_string = (char *) malloc (i - n + 1);
-	while (i > n)
-	{
-		r_string[r_string_index] = s[n];
-		n++;
-		r_string_index++;
-	}
+	while (i > ++n)
+		r_string[r_string_index++] = s[n];
 	r_string[r_string_index] = '\0';
 	return (r_string);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**r_string;
 	int		i;
 
 	r_string = (char **) malloc ((ft_malloc_size_tab(s, c) + 1) * sizeof(char **));
+	if (!s || !s[0])
+		r_string[0] = (char *) malloc(1);
 	if (!r_string)
 		return (NULL);
 	i = 0;
@@ -132,15 +128,20 @@ char	**ft_split(char const *s, char c)
 	r_string[i] = NULL;
 	return (r_string);
 }
-/*
+
 #include <stdio.h>
 int	main(void)
 {
-	char **test = ft_split("     ", ' ');
+	char **test = ft_split("        ", ' ');
 	int i = 0;
+	if (test[0] == NULL)
+	{
+		free(test);
+		return (0);
+	}
 	while (test[i] != NULL)
 	{
-		printf("%s\n", test[i]);
+		printf("%p\n", test[i]);
 		i++;
 	}
 	while (i >= 0)
@@ -148,7 +149,5 @@ int	main(void)
 		free(test[i]);
 		i--;
 	}
-	free(test);
 	return (0);
 }
-*/

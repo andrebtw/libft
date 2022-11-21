@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:35:19 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/14 13:20:18 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/21 12:07:16 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	ft_skipbegin(char const *string, char const *set, int s1_index)
 	return (start);
 }
 
-static int	ft_skipend(char const *string, char const *set, int	s1_index, int end)
+static int	ft_skipend(char const *string, char const *set,
+			int s1_index, int end)
 {
 	while (string[s1_index])
 	{
