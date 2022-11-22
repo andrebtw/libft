@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:44:57 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/14 13:16:21 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:04:18 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
+	count = 1;
+	size = 1;
+	/*
 	unsigned char	*array;
 	size_t			i;
 	size_t			k;
@@ -32,5 +35,6 @@ void	*ft_calloc(size_t count, size_t size)
 		array[k] = '\0';
 		k++;
 	}
-	return ((void *)array);
+	return ((void *)array);*/
+	return (NULL);
 }

@@ -6,38 +6,29 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:20:19 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/12 14:17:08 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:09:03 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
+#include "libft.h"
 
-int	ft_strlen_int(const char *string)
-{
-	int	i;
-
-	i = 0;
-	while (string[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_size_verif(const char *s, unsigned int start, size_t len)
+static char	*ft_size_verif(const char *s, unsigned int start, size_t len)
 {
 	char	*ver_string;
 
-	if (len >= ft_strlen_int(s) - start)
+	if (len >= ft_strlen(s) - start)
 	{
 		ver_string = (char *) malloc (
-				(ft_strlen_int(s) - start) * sizeof(char) + 1);
+				(ft_strlen(s) - start) * sizeof(char) + 1);
 	}
 	else
 		ver_string = (char *) malloc (len * sizeof(char) + 1);
 	return (ver_string);
 }
 
-char	*ft_zero_size(void)
+static char	*ft_zero_size(void)
 {
 	char	*r_string;
 
@@ -56,7 +47,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = start;
 	len_count = 0;
-	if (ft_strlen_int(s) <= (int)start)
+	if ((unsigned int)ft_strlen(s) <= start)
 		return (ft_zero_size());
 	r_string = ft_size_verif(s, start, len);
 	if (r_string == NULL)
