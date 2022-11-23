@@ -67,7 +67,7 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		number = number * 10 + nptr[i++] - '0';
-		if (nptr[i] != '0')
+		if (nptr[i] != '0' && number)
 			nb_length++;
 	}
 	return (ft_check_if_of(number, neg_mult, nb_length));
