@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 03:23:48 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/22 14:33:57 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/11/23 16:04:35 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/11/23 16:45:32 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include <stdlib.h>
 #include "libft.h"
 
-int	ft_malloc_size_tab(char const *s, char c)
+static int	ft_mt(char const *s, char c)
 {
 	int		i;
 	int		malloc_size;
 
+	if (!s || !s[0])
+		return (0);
 	i = 0;
 	malloc_size = 1;
 	while (s[i])
@@ -40,7 +42,7 @@ int	ft_malloc_size_tab(char const *s, char c)
 	return (malloc_size);
 }
 
-int	ft_skip_begin(char const *s, char c, int i)
+static int	ft_skip_begin(char const *s, char c, int i)
 {
 	if (s[i] && i == 0)
 	{
@@ -51,29 +53,29 @@ int	ft_skip_begin(char const *s, char c, int i)
 	return (i);
 }
 
-int	ft_add_i(char const *s, char c, int i)
+static char	*ft_amc(char const *s, int i, int n)
 {
-	while (s[i] && s[i] != c)
-		i++;
-	if (s[i] && !i)
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i] && s[i] != c)
-			i++;
-	}
-	return (i);
+	int		r_string_index;
+	char	*r_string;
+
+	r_string_index = 0;
+	r_string = (char *) malloc (i - n);
+	if (!r_string)
+		return (NULL);
+	while (i > ++n)
+		r_string[r_string_index++] = s[n];
+	r_string[r_string_index] = '\0';
+	return (r_string);
 }
 
-char	*ft_malloc_string(char const *s, char c, int n)
+static char	*ft_malloc_string(char const *s, char c, int n)
 {
-	char	*r_string;
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (s[0] == c)
 		n++;
-	while (s[i] && n != 0)
+	while (s[++i] && n != 0)
 	{
 		if (s[i] == c)
 		{
@@ -81,21 +83,66 @@ char	*ft_malloc_string(char const *s, char c, int n)
 				i++;
 			n--;
 		}
-		if (s[i])
-			i++;
 	}
-	r_string = ft_malloc_string2(s, c, i, n);
-	if (!r_string)
-		return (NULL);
-	return (r_string);
+	if (i)
+		i--;
+	n = ft_skip_begin(s, c, i) - 1;
+	while (s[i] && s[i] != c)
+		i++;
+	if (s[i] && !i)
+		while (s[i])
+			i++;
+	return (ft_amc(s, i, n));
 }
 
 char	**ft_split(const char *s, char c)
 {
 	char	**r_string;
+	int		i;
 
-	r_string = ft_split_return(s, c);
+	r_string = (char **) malloc ((ft_mt(s, c) + 1) * sizeof(char **));
 	if (!r_string)
 		return (NULL);
+	i = 0;
+	while (i < ft_mt(s, c))
+	{
+		r_string[i] = ft_malloc_string(s, c, i);
+		if (!r_string[i])
+		{
+			while (i >= 0)
+			{
+				free(r_string[i]);
+				i--;
+			}
+			free(r_string);
+			return (NULL);
+		}
+		i++;
+	}
+	r_string[i] = NULL;
 	return (r_string);
 }
+
+/*
+#include <stdio.h>
+int	main(void)
+{
+	char **test = ft_split("hello!zzzzzzzz", 'z');
+	int i = 0;
+	if (test[0] == NULL)
+	{
+		free(test);
+		return (0);
+	}
+	while (test[i] != NULL)
+	{
+		printf("%s\n", test[i]);
+		i++;
+	}
+	while (i >= 0)
+	{
+		free(test[i]);
+		i--;
+	}
+	return (0);
+}*/
