@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:11:55 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/15 16:23:00 by anrodri2         ###   ########lyon.fr   */
+/*   Updated: 2022/11/23 16:57:52 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	*ft_is_zero(void)
 	char	*r_string;
 
 	r_string = (char *) malloc (sizeof(char) * 2);
+	if (!r_string)
+		return (NULL);
 	r_string[0] = '0';
 	r_string[1] = '\0';
 	return (r_string);
