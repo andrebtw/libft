@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:37:31 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/11/23 00:58:44 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:15:14 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		number = number * 10 + nptr[i++] - '0';
-		if (nptr[i] != '0' && number)
+		if (nptr[i - 1] != '0' && number)
 			nb_length++;
 	}
 	return (ft_check_if_of(number, neg_mult, nb_length));
