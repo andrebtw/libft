@@ -26,10 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstdelone(r_lst, del);
 			return (NULL);
 		}
-		r_lst->content = lst->content;
-		f(r_lst->content);
-		lst = lst->next;
-		r_lst = lst->next;
+		ft_lstadd_back(&r_lst, r_lst->content);
 	}
 	return (r_lst);
 }
