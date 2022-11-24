@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static int	ft_mt(char const *s, char c)
@@ -122,27 +120,3 @@ char	**ft_split(const char *s, char c)
 	r_string[i] = NULL;
 	return (r_string);
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char **test = ft_split("hello!zzzzzzzz", 'z');
-	int i = 0;
-	if (test[0] == NULL)
-	{
-		free(test);
-		return (0);
-	}
-	while (test[i] != NULL)
-	{
-		printf("%s\n", test[i]);
-		i++;
-	}
-	while (i >= 0)
-	{
-		free(test[i]);
-		i--;
-	}
-	return (0);
-}*/

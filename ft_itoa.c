@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 static int	int_size(long n)
 {
@@ -83,11 +81,3 @@ char	*ft_itoa(int n)
 	r_string = ft_itoa_main(n, r_string, n_long, nb_len);
 	return (r_string);
 }
-/*
-int	main(void)
-{
-	char *str = ft_itoa(-489484994);
-	printf("%s", str);
-	return (0);
-}
-*/
