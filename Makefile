@@ -1,5 +1,5 @@
 #### SYSTEM ####
-.PHONY: ${NAME} all clean fclean re bonus
+.PHONY: $(NAME) all clean fclean re bonus
 CC = gcc
 AR = ar rc
 RM = rm -f
@@ -11,7 +11,7 @@ SRCS = ft_atoi.c  ft_strchr.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c f
 		ft_strlen.c ft_strncmp.c ft_strncpy.c ft_strnstr.c ft_strrchr.c ft_tolower.c ft_toupper.c ft_strlcpy.c \
 		ft_substr.c ft_strtrim.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_itoa.c \
 		ft_split.c ft_strmapi.c ft_striteri.c
-OBJS = ${SRCS:.c=.o}
+OBJS = $(SRCS:.c=.o)
 HEADER = libft.h
 
 #### BONUS FILES ####
@@ -23,21 +23,21 @@ OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 NAME = libft.a
 
 #### RULES ####
-.c.o:		{HEADER}
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME):	$(OBJS) $(HEADER)
+			$(AR) $(NAME) $(OBJS)
 
-${NAME}:	${OBJS} Makefile ${HEADER}
-			${AR} ${NAME} ${OBJS}
+%.o: %.c	$(HEADER) Makefile
+			$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
 
-all:		${NAME}
+all:		$(NAME)
 
 clean:
-			${RM} ${OBJS} ${OBJS_BONUS} 
+			$(RM) $(OBJS) $(OBJS_BONUS) 
 
 fclean:
-			${RM} ${OBJS} ${OBJS_BONUS} ${NAME}
+			$(RM) $(OBJS) $(OBJS_BONUS) $(NAME)
 
-re:	fclean ${NAME}
+re:	fclean $(NAME)
 
-bonus:		${OBJS_BONUS} Makefile ${HEADER}
-			${AR} ${NAME} ${OBJS_BONUS}
+bonus:		$(OBJS_BONUS) Makefile $(HEADER)
+			$(AR) $(NAME) $(OBJS_BONUS)
